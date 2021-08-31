@@ -80,9 +80,9 @@
         width = 890
         margin = ({top: 20, right: 20, bottom: 35, left: 40})
 
-        x = d3.scaleLog([200, 1e21], [margin.left, width - margin.right])
+        x = d3.scaleLog([1577836800000, 1625097600000], [margin.left, width - margin.right])
         y = d3.scaleLinear([0, 3], [height - margin.bottom, margin.top])
-        radius = d3.scaleSqrt([0, 3], [0, width / 24])
+        radius = d3.scaleSqrt([0, 5e8], [0, width / 24])
 
         xAxis = g => g
             .attr("transform", 'translate(0, 525)')
@@ -146,11 +146,32 @@
 
 
         Chart.prototype.update = function(data){
+            svg.selectAll("g").select("circle").exit().remove();
+            svg.selectAll("g").select("circle").data(data, d => d.Country)
+                .join("circle")
+                .sort((a, b) => d3.descending(a.deathsPercent, b.deathsPercent))
+                .attr("cx", d => {
+                    console.log(x(Date.parse(d.Date)), y(d.deathsPercent), radius(d.deathsPercent * 1000000000000));
+                    return x(Date.parse(d.Date))
+                })
+                .attr("cy", d => {
+                    return y(d.deathsPercent)
+                })
+                .attr("r", d => {
+                    return radius(d.deathsPercent * 1000000000000)
+                });
 
-            const circle = svg.append("g")
+        }
+
+        Chart.prototype.h = function(){
+            console.info('hx');
+            alert('x');
+        }
+
+        Chart.prototype.circle = svg.append("g")
                 .attr("stroke", "black")
                 .selectAll("circle")
-                .data(seriesData[0], d => d.Country)
+                .data([], d => d.Country)
                 .join("circle")
                 .sort((a, b) => d3.descending(a.deathsPercent, b.deathsPercent))
                 .attr("cx", d => {
@@ -162,28 +183,8 @@
                     return d.deathsPercent * 10000
                 })
                 .attr("fill", "black")
-                // .call(circle => circle.append("title")
-                //     .text(d => d.Country));
-
-                circle.data(data, d => d.Country)
-                    .sort((a, b) => d3.descending(a.deathsPercent, b.deathsPercent))
-                    .attr("cx", d => {
-                        console.log(x(Date.parse(d.Date)), y(d.deathsPercent), d.deathsPercent * 10000);
-                        return x(Date.parse(d.Date))
-                    })
-                    .attr("cy", d => {
-                        return y(d.deathsPercent)
-                    })
-                    .attr("r", d => {
-                        return d.deathsPercent * 10000
-                    });
-        }
-
-        Chart.prototype.h = function(){
-            console.info('hx');
-            alert('x');
-        }
-
+                .call(circle => circle.append("title")
+                    .text(d => d.Country));
 
 
         const startSeries = function(){
