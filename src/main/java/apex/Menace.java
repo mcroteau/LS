@@ -13,6 +13,10 @@ public class Menace {
     BigDecimal deathsPercent;
 
     Integer deathTotal;
+    Integer confirmedTotal;
+    Integer recoveredTotal;
+
+    BigDecimal curedRatio;
 
     public String getDate() {
         return Date;
@@ -84,6 +88,30 @@ public class Menace {
 
     public void setDeathTotal(Integer deathTotal) {
         this.deathTotal = deathTotal;
+    }
+
+    public Integer getConfirmedTotal() {
+        return confirmedTotal;
+    }
+
+    public void setConfirmedTotal(Integer confirmedTotal) {
+        this.confirmedTotal = confirmedTotal;
+    }
+
+    public Integer getRecoveredTotal() {
+        return recoveredTotal;
+    }
+
+    public void setRecoveredTotal(Integer recoveredTotal) {
+        this.recoveredTotal = recoveredTotal;
+    }
+
+    public BigDecimal getCuredRatio() {
+        return curedRatio;
+    }
+
+    public void setCuredRatio(BigDecimal curedRatio) {
+        this.curedRatio = curedRatio;
     }
 }
 

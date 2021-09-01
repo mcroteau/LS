@@ -54,6 +54,8 @@ public class HelloHandler {
 
         Map<String, Menace> consolidatedMap = new HashMap<String, Menace>();
 
+        Integer confirmedTotal = 0;
+        Integer recoveredTotal = 0;
         for(String[] populationData : populations){
             String country = populationData[0];
             BigDecimal population = new BigDecimal(populationData[1].trim()).multiply(new BigDecimal(1000));
@@ -80,6 +82,14 @@ public class HelloHandler {
                     Integer deathTotal = (threat.getDeathTotal() != null ? threat.getDeathTotal() : 0);
                     threat.setDeathTotal( deathTotal + threat.getDeaths());
 
+                    confirmedTotal = threat.getConfirmed() + (threat.getConfirmedTotal() != null ? threat.getConfirmedTotal() : 0);
+                    threat.setConfirmedTotal(confirmedTotal);
+
+                    threat.setRecovered(threat.getConfirmed() - threat.getDeaths());
+
+                    recoveredTotal = threat.getRecovered() + (threat.getRecoveredTotal() != null ? threat.getRecoveredTotal() : 0);
+                    threat.setRecoveredTotal(recoveredTotal);
+
                     menaces.add(threat);
 
                     consolidatedMap.put(threat.getCountry(), threat);
@@ -92,10 +102,16 @@ public class HelloHandler {
         for(Map.Entry<String, Menace> entry: consolidatedMap.entrySet()){
             consolidated.add(entry.getValue());
         }
+
+        for(Menace threat : consolidated){
+            BigDecimal ratio = new BigDecimal(threat.getRecoveredTotal()).divide(new BigDecimal(threat.getConfirmedTotal()), 7, RoundingMode.HALF_UP).multiply(new BigDecimal(100));
+            threat.setCuredRatio(ratio);
+        }
+
         Comparator<Menace> comparator = new Comparator<Menace>() {
             @Override
             public int compare(Menace a1, Menace a2) {
-                return a2.getDeathsPercent().compareTo(a1.getDeathsPercent());
+                return a2.getCuredRatio().compareTo(a1.getCuredRatio());
             }
         };
         Collections.sort(consolidated, comparator);
