@@ -21,7 +21,7 @@
 
 <body>
 
-<h1>Hierarcy</h1>
+<h1>Hierarchy</h1>
 <table id="entries"></table>
 
 <h1>Consolidated</h1>
@@ -99,7 +99,9 @@
 
 <script>
 
-    $('#data').html('loading...');
+    $('#entries').html('loading...');
+    $('#totals').html('loading...');
+    $('#details').html('loading...');
 
     $(document).ready(function(){
         let c = { entries: [] };
