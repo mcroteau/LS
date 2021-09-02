@@ -33,9 +33,10 @@ introduce covid to their countries. Germany "worked" Laos with the idea
 that they would later use Laos + Vietnam as an American rally to conflict,
 airing on Fox News China as the origin of Covid.</p>
 
-<h2>Hierarchy</h2>
 <p style="color:red">Data may take a few minutes to load</p>
 
+<h2>Hierarchy</h2>
+<p>When either the first reported death occurred or last date of record</p>
 <table id="entries"></table>
 
 <h2>Consolidated</h2>
