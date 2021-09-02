@@ -7,6 +7,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.1/mustache.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3@7.0.1/dist/d3.min.js"></script>
     <style>
+        body{
+            width:690px;
+        }
         table{
             border-collapse: collapse;
         }
@@ -21,10 +24,19 @@
 
 <body>
 
-<h1>Hierarchy</h1>
+<h1>Germany + Laos + Vietnamese + Tanzania</h1>
+<p>Germany plus the above and some others from East Africa originated Covid19.
+In the hierarchy table Laos never had any reported covid deaths and is a known
+    area of interest.</p>
+<p>The details table displays Germany and Venezuala with similar 'oh shit' moments and
+introduce covid to their countries. Germany "worked" Laos with the idea
+that they would later use China + Laos + Vietnam as an American rally to conflict,
+airing on Fox News China as the origin of Covid.</p>
+
+<h2>Hierarchy</h2>
 <table id="entries"></table>
 
-<h1>Consolidated</h1>
+<h2>Consolidated</h2>
 <table>
     <tr>
         <th>Date</th>
@@ -40,7 +52,7 @@
     <tbody id="totals"></tbody>
 </table>
 
-<h1>Detailed</h1>
+<h2>Detailed</h2>
 <table>
     <tr>
         <th>Date</th>
@@ -57,16 +69,16 @@
 </table>
 
 <script type="text/template" id="entriesTemplate">
-    {{#entries}}
+<%--    {{#entries}}--%>
         <tr>
             <td>{{Date}}</td>
             <td>{{Country}}</td>
         </tr>
-    {{/entries}}
+<%--    {{/entries}}--%>
 </script>
 
 <script type="text/template" id="consolidatedTemplate">
-    {{#consolidated}}
+<%--    {{#consolidated}}--%>
     <tr>
         <td>{{Date}}</td>
         <td>{{Country}}</td>
@@ -78,23 +90,23 @@
         <td>{{deathsPercent}}</td>
         <td>{{curedRatio}}</td>
     </tr>
-    {{/consolidated}}
+<%--    {{/consolidated}}--%>
 </script>
 
 <script type="text/template" id="template">
-    {{#tally}}
+<%--    {{#tally}}--%>
         <tr>
             <td>{{Date}}</td>
             <td>{{Country}}</td>
             <td>{{Confirmed}}</td>
 <%--            <td>{{confirmedPercent}}</td>--%>
-<%--            <td>{{Recovered}}</td>--%>
+            <td>{{Recovered}}</td>
 <%--            <td>{{recoveredPercent}}</td>--%>
             <td>{{deathTotal}}</td>
             <td>{{deathsPercent}}</td>
 <%--            <td>{{curedRatio}}</td>--%>
         </tr>
-    {{/tally}}
+<%--    {{/tally}}--%>
 </script>
 
 <script>
@@ -113,14 +125,20 @@
         $.ajax({
            url : "/q/data",
            success : function(resp, data){
-               const details = Mustache.render($('#template').text(), resp);
-               $('#details').html(details);
 
-               const totals = Mustache.render($('#consolidatedTemplate').text(), resp);
-               $('#totals').html(totals);
 
                const consolidateData = (resp) =>{
+                   $('#totals').html('')
+                   $(resp.consolidated).each(function(idx, obj){
+                       const totals = Mustache.render($('#consolidatedTemplate').text(), obj);
+                       $('#totals').append(totals);
+                   })
+
+                   $('#details').html('');
                    $(resp.tally).each(function(idx, obj){
+                       const details = Mustache.render($('#template').text(), obj);
+                       $('#details').append(details);
+
                        if(!countries.hasOwnProperty(obj.Country)){
                            if(obj.Deaths != 0){
                                countries[obj.Country] = obj.Date + " - " + obj.Country
@@ -145,8 +163,11 @@
                            return Date.parse(b.Date) - Date.parse(a.Date);
                        });
 
-                       const output = Mustache.render($('#entriesTemplate').text(), c);
-                       $('#entries').html(output);
+                       $('#entries').html('');
+                       $(c.entries).each(function(idx, obj){
+                           const output = Mustache.render($('#entriesTemplate').text(), obj);
+                           $('#entries').append(output);
+                       })
                    });
            }
         })
