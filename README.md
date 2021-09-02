@@ -1,6 +1,6 @@
 # FusionMenace
 
-To run the project and view the data:
+To run the project:
 
 1. clone repo: 
 ```
