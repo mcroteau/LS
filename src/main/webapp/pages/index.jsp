@@ -29,7 +29,7 @@
 In the hierarchy table Laos never had any reported covid deaths and is a known
     area of interest.</p>
 <p>The details table displays Germany and Venezuala with similar 'oh shit' moments and
-introduce covid to their countries. Germany "worked" Laos with the idea
+introduce covid to their countries around the same time. Germany "worked" Laos with the idea
 that they would later use Laos + Vietnam as an American rally to conflict,
 airing on Fox News China as the origin of Covid.</p>
 
