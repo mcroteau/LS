@@ -30,10 +30,12 @@ In the hierarchy table Laos never had any reported covid deaths and is a known
     area of interest.</p>
 <p>The details table displays Germany and Venezuala with similar 'oh shit' moments and
 introduce covid to their countries. Germany "worked" Laos with the idea
-that they would later use China + Laos + Vietnam as an American rally to conflict,
+that they would later use Laos + Vietnam as an American rally to conflict,
 airing on Fox News China as the origin of Covid.</p>
 
 <h2>Hierarchy</h2>
+<p style="color:red">Data may take a few minutes to load</p>
+
 <table id="entries"></table>
 
 <h2>Consolidated</h2>
@@ -47,7 +49,7 @@ airing on Fox News China as the origin of Covid.</p>
 <%--        <th>Recovered Percent</th>--%>
         <th>Deaths</th>
         <th>Deaths Percent</th>
-        <th>Ratio</th>
+        <th>Recovery Ratio</th>
     </tr>
     <tbody id="totals"></tbody>
 </table>
