@@ -1,5 +1,7 @@
 # FusionMenace
 
+To run the project and view the data:
+
 1. clone repo: 
 ```
 git clone https://github.com/mcroteau/FusionMenace.git
