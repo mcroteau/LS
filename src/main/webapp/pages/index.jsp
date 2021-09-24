@@ -24,14 +24,9 @@
 
 <body>
 
-<h1>Germany + Laos + Vietnamese + Tanzania</h1>
-<p>Germany plus the above and some others from East Africa originated Covid19.
-In the hierarchy table Laos never had any reported covid deaths and is a known
-    area of interest.</p>
-<p>The details table displays Germany and Venezuala with similar 'oh shit' moments and
-introduce covid to their countries around the same time. Germany "worked" Laos with the idea
-that they would later use Laos + Vietnam as an American rally to conflict,
-airing on Fox News China as the origin of Covid.</p>
+<h1>Germany.</h1>
+
+<p>Let's see if you can figure it out.</p>
 
 <p style="color:red">Data may take a few minutes to load</p>
 
@@ -50,7 +45,7 @@ airing on Fox News China as the origin of Covid.</p>
 <%--        <th>Recovered Percent</th>--%>
         <th>Deaths</th>
         <th>Deaths Percent</th>
-        <th>Recovery Ratio</th>
+<%--        <th>Recovery Ratio</th>--%>
     </tr>
     <tbody id="totals"></tbody>
 </table>
@@ -66,7 +61,7 @@ airing on Fox News China as the origin of Covid.</p>
 <%--        <th>Recovered Percent</th>--%>
         <th>Deaths</th>
         <th>Deaths Percent</th>
-<%--        <th>Ratio</th>--%>
+        <th>Ratio</th>
     </tr>
     <tbody id="details"></tbody>
 </table>

@@ -21,7 +21,7 @@ import java.util.*;
 
 @HttpHandler
 public class HelloHandler {
-
+    
     Gson gson = new Gson();
 
     static final String THREAT_URL = "https://pkgstore.datahub.io/core/covid-19/countries-aggregated_json/data/0470557b51a98ab9c4a30ed24cd0eb2c/countries-aggregated_json.json";
