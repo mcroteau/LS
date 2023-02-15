@@ -24,7 +24,7 @@
 
 <body>
 
-<h1>Germany.</h1>
+<h1>East Germany</h1>
 
 <p>Let's see if you can figure it out.</p>
 
